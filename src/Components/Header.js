@@ -36,26 +36,19 @@ const SLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${(props) => (props.current ? "rgba(52,152,219,0.8)" : "inherit")};
 `;
 
 export default withRouter(({ location: { pathname } }) => (
   <Header>
     <List>
       <Item current={pathname === "/"}>
-        <SLink current={pathname === "/"} to="/">
-          Movies
-        </SLink>
+        <SLink to="/">Movies</SLink>
       </Item>
       <Item current={pathname === "/tv"}>
-        <SLink current={pathname === "/tv"} to="/tv">
-          TV
-        </SLink>
+        <SLink to="/tv">TV</SLink>
       </Item>
       <Item current={pathname === "/search"}>
-        <SLink current={pathname === "/search"} to="/search">
-          Search
-        </SLink>
+        <SLink to="/search">Search</SLink>
       </Item>
     </List>
   </Header>

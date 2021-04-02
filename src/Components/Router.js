@@ -10,6 +10,7 @@ import TV from "Routes/TV";
 import Header from "Components/Header";
 import Search from "Routes/Search";
 
+// eslint-disable-next-line
 export default () => (
   <Router>
     <Header />
