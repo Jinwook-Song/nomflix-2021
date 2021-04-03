@@ -46,7 +46,6 @@ export default class Detail extends React.Component {
 
   render() {
     const { result, error, loading } = this.state;
-    console.log(this.state);
     return <DetailPresenter result={result} error={error} loading={loading} />;
   }
 }
