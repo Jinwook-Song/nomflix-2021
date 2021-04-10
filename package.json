@@ -26,7 +26,6 @@
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
     "predeploy": "npm run build"
-
   },
   "eslintConfig": {
     "extends": [
@@ -34,7 +33,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://jinwook-song.github.io/nomflix-2021",
+  "homepage": "https://happy-noether-f9d5c6.netlify.app",
   "browserslist": {
     "production": [
       ">0.2%",
