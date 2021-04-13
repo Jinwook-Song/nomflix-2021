@@ -52,12 +52,14 @@ const Title = styled.h3`
 
 const ItemContainer = styled.div`
   margin: 20px 0;
+  width: 60%;
 `;
 
 const Item = styled.span``;
 
 const Divider = styled.span`
   margin: 0 10px;
+  font-size: 15px;
 `;
 
 const Overview = styled.p`
@@ -65,9 +67,44 @@ const Overview = styled.p`
   opacity: 0.7;
   line-height: 1.5;
   width: 50%;
+  margin-bottom: 20px;
 `;
 
-const DetailPresenter = ({ result, loading, error }) =>
+const Link = styled.a`
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+  background-color: yellow;
+  color: black;
+  font-weight: 800;
+  border-radius: 5px;
+`;
+
+const Video = styled.a`
+  display: inline-block;
+
+  font-size: 18px;
+  background-color: red;
+  color: white;
+  font-weight: 800;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+`;
+
+const Image = styled.div`
+  display: inline-block;
+  background-image: url(${(props) => props.bgPoster});
+  width: 180px;
+  height: 260px;
+  border-radius: 4px;
+  background-position: center center;
+  margin-right: 5px;
+  margin-bottom: 5px;
+`;
+
+const DetailPresenter = ({ result, loading, error, isMovie }) =>
   loading ? (
     <>
       <Helmet>
@@ -119,8 +156,64 @@ const DetailPresenter = ({ result, loading, error }) =>
                     : `${genre.name} / `
                 )}
             </Item>
+
+            <Divider>🎞</Divider>
+
+            <Item>
+              {result.imdb_id && (
+                <Link
+                  href={`https://www.imdb.com/title/${result.imdb_id}/`}
+                  target="_blank"
+                >
+                  IMDb
+                </Link>
+              )}
+            </Item>
           </ItemContainer>
+
           <Overview>{result.overview}</Overview>
+          <ItemContainer>
+            {result.videos.results.map((video) => (
+              <Video
+                key={video.id}
+                href={`https://www.youtube.com/watch?v=${video.key}`}
+                target="_blank"
+              >
+                YouTube
+              </Video>
+            ))}
+          </ItemContainer>
+
+          <ItemContainer>
+            <Item>
+              {result.production_companies &&
+                result.production_companies.map((company, index) =>
+                  index === result.production_companies.length - 1
+                    ? company.name
+                    : `${company.name} / `
+                )}
+            </Item>
+          </ItemContainer>
+          <ItemContainer>
+            <Item>
+              {result.production_countries &&
+                result.production_countries.map((country, index) =>
+                  index === result.production_countries.length - 1
+                    ? country.name
+                    : `${country.name} / `
+                )}
+            </Item>
+          </ItemContainer>
+
+          {!isMovie && (
+            <div>
+              {result.seasons.map((season) => (
+                <Image
+                  bgPoster={`https://image.tmdb.org/t/p/w200${season.poster_path}`}
+                />
+              ))}
+            </div>
+          )}
         </Data>
       </Content>
     </Container>
