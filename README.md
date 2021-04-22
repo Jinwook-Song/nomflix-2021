@@ -31,3 +31,7 @@ Learning React and ES6 by building a Movie Discovery App.
 # Previes:
 
 Try it on [netlify](https://happy-noether-f9d5c6.netlify.app/)
+
+## Develope Page:
+
+- https://happy-noether-f9d5c6.netlify.app
